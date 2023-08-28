@@ -1,5 +1,5 @@
 // import InputField from "./InputField";
-import { InputFieldType } from "../common/types_interfaces";
+import { InputFieldType } from "../../common/types_interfaces";
 import SelectField from "./SelectField";
 
 const DateField = ({ register, name, onChange, value }: InputFieldType) => {

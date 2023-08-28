@@ -7,11 +7,12 @@ export interface Inputs {
   lastName: string;
   email: string;
   mobile: string;
-  address: string;
-  contractType: ContractType;
+  address?: string;
+  // contractType?: string<'permanent' | 'contract'>;
+  contractType?: ContractType;
   startDate: Date;
   finishDate?: Date | boolean;
-  isFullTime: boolean;
+  isFullTime?: boolean;
   hoursPerWeek: number;
 }
 

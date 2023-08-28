@@ -1,4 +1,4 @@
-import { InputFieldType } from "../common/types_interfaces";
+import { InputFieldType } from "../../common/types_interfaces";
 
 const InputField = ({
   register,
