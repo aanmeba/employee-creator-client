@@ -1,15 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputField from "./InputField";
 import { Inputs } from "../../common/types_interfaces";
-import InputSection from "./InputSection";
-import Label from "./Label";
-import Heading from "../Heading";
-import FormSection from "./FormSection";
+import InputSection from "./InputSection/InputSection";
+import Label from "./Label/Label";
+import Heading from "../Heading/Heading";
+import FormSection from "./FormSection/FormSection";
 import DateField from "./DateField";
 import { ChangeEvent, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
-import FieldErrorMessage from "./FieldErrorMessage";
+import FieldErrorMessage from "./FieldErrorMessage/FieldErrorMessage";
 
 const Form = () => {
   const {
