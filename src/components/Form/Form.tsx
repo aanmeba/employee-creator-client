@@ -5,11 +5,13 @@ import InputSection from "./InputSection/InputSection";
 import Label from "./Label/Label";
 import Heading from "../Heading/Heading";
 import FormSection from "./FormSection/FormSection";
-import DateField from "../Date/DateField";
+// import DateField from "../Date/DateField";
 import { ChangeEvent, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import FieldErrorMessage from "./FieldErrorMessage/FieldErrorMessage";
+import Button from "../Button/Button";
+import { styleInputField } from "../../common/styleClassName";
 
 const Form = () => {
   const {
@@ -42,8 +44,8 @@ const Form = () => {
   //   console.log("something went wrong", errors);
 
   const options = {
-    contractType: ["permanent", "contract"],
-    hoursType: ["full-time", "part-time"],
+    contractType: ["Permanent", "Contract"],
+    hoursType: ["Full-time", "Part-time"],
   };
 
   const defaultState = {
@@ -102,7 +104,7 @@ const Form = () => {
               valueAsNumber: true,
               required: true,
             })}
-            className="border"
+            className={styleInputField}
             name="mobile"
             id="mobile"
           />
@@ -175,7 +177,10 @@ const Form = () => {
         </InputSection>
       </FormSection>
 
-      <button>Register</button>
+      <div className="flex gap-4">
+        <Button defaultBtn={false}>Save</Button>
+        <Button defaultBtn={true}>Cancel</Button>
+      </div>
     </form>
   );
 };

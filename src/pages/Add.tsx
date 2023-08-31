@@ -1,10 +1,13 @@
 import Form from "../components/Form/Form";
+import Header from "../components/Header/Header";
 
 const Add = () => {
   return (
     <>
-      <h1>Add Form </h1>
-      <Form />
+      <Header>Employee details</Header>
+      <div className="p-16">
+        <Form />
+      </div>
     </>
   );
 };
