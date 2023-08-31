@@ -9,7 +9,6 @@ export interface Inputs {
   mobile: string;
   address?: string;
   contractType?: string;
-  // contractType?: ContractType;
   startDate?: Date;
   finishDate?: Date;
   hoursType?: string;
