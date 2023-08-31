@@ -1,11 +1,11 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import InputField from "./InputField";
 import { Inputs } from "../../common/types_interfaces";
 import InputSection from "./InputSection/InputSection";
 import Label from "./Label/Label";
 import Heading from "../Heading/Heading";
 import FormSection from "./FormSection/FormSection";
-import DateField from "./DateField";
+import DateField from "../Date/DateField";
 import { ChangeEvent, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
@@ -19,27 +19,46 @@ const Form = () => {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver<Inputs>(schema) });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  // const defaultValues = {
+  //   firstName: "",
+  //   middleName: "",
+  //   lastName: "",
+  //   email: "",
+  //   mobile: "",
+  //   address: "",
+  //   contractType: "",
+  //   hoursType: "",
+  //   hoursPerWeek: 0,
+  // };
+  // const [formValues, setFormValues] = useState<Inputs>(defaultValues);
+
+  // : SubmitHandler<Inputs>
+  const onSubmit = (data: Inputs) => {
+    console.log("--- form submitted -----");
+    console.log(data, " --- onSubmit data");
+  };
+
+  // const onError = (errors: FieldErrors<Inputs>) =>
+  //   console.log("something went wrong", errors);
 
   const options = {
     contractType: ["permanent", "contract"],
-    isFullTime: ["full-time", "part-time"],
+    hoursType: ["full-time", "part-time"],
   };
 
   const defaultState = {
     contractType: "",
-    startDateMonth: "",
-    finishDateMonth: "",
-    isFullTime: false,
+    // startDateMonth: "",
+    // finishDateMonth: "",
+    hoursType: "",
   };
   const [selectOptions, setSelectOptions] = useState(defaultState);
 
   const handleChange = (
     event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    const { id, value } = event.target;
-    console.log(event, event.target, "--id : ", id, "-- value: ", value);
-    setSelectOptions((prev) => ({ ...prev, [id]: value }));
+    const { name, value } = event.target;
+    setSelectOptions((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -76,7 +95,17 @@ const Form = () => {
         </InputSection>
         <InputSection>
           <Label>Mobile number</Label>
-          <InputField register={register} name="mobile" required={false} />
+          {/* <InputField register={register} name="mobile" required={false} /> */}
+          <input
+            type="text"
+            {...register("mobile", {
+              valueAsNumber: true,
+              required: true,
+            })}
+            className="border"
+            name="mobile"
+            id="mobile"
+          />
           {errors.mobile && (
             <FieldErrorMessage message={errors.mobile.message} />
           )}
@@ -103,29 +132,34 @@ const Form = () => {
             />
           ))}
         </InputSection>
-        <DateField
+        <InputField register={register} name="startDate" type="date" />
+        {/* <DateField
           register={register}
           name="startDate"
           value={selectOptions.startDateMonth}
           onChange={handleChange}
-        />
+        /> */}
         {errors.startDate && (
           <FieldErrorMessage message={errors.startDate.message} />
         )}
-        <DateField
+        <InputField register={register} name="finishDate" type="date" />
+        {errors.finishDate && (
+          <FieldErrorMessage message={errors.finishDate.message} />
+        )}
+        {/* <DateField
           register={register}
           name="finishDate"
           value={selectOptions.finishDateMonth}
           onChange={handleChange}
-        />
+        /> */}
         <InputSection>
           <Label>Is this on a full-time or part-time basis?</Label>
-          {options.isFullTime.map((opt, i) => (
+          {options.hoursType.map((opt, i) => (
             <InputField
               type="radio"
               value={opt}
               register={register}
-              name="isFullTime"
+              name="hoursType"
               required={true}
               key={i}
               onChange={handleChange}
@@ -141,7 +175,7 @@ const Form = () => {
         </InputSection>
       </FormSection>
 
-      <input type="submit" />
+      <button>Register</button>
     </form>
   );
 };

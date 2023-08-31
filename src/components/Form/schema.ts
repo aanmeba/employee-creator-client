@@ -1,6 +1,6 @@
 // import { Resolver } from "react-hook-form";
 import * as yup from "yup";
-import { ContractType } from "../../common/types_interfaces";
+// import { ContractType } from "../../common/types_interfaces";
 
 export const schema = yup.object({
   firstName: yup.string().required("please enter your firstname"),
@@ -13,13 +13,16 @@ export const schema = yup.object({
   mobile: yup
     .string()
     .required("please enter your mobile number")
-    .min(9, "must be an Australian number"),
-  address: yup.string(),
+    .min(9, "must be an Australian number")
+    .max(10, "please enter valid length of mobile number"),
+  address: yup.string().optional(),
   // .required("please enter your address"),
-  contractType: yup.string<ContractType>(),
+  contractType: yup.string().optional(),
   startDate: yup.date().required("please enter your start date"),
-  finishDate: yup.date().optional(),
-  isFullTime: yup.boolean().optional(),
+  finishDate: yup
+    .date()
+    .min(yup.ref("startDate"), "finish date should be after your start date"),
+  hoursType: yup.string().optional(),
   hoursPerWeek: yup
     .number()
     .required("please enter how many hours you work per week")

@@ -8,18 +8,19 @@ export interface Inputs {
   email: string;
   mobile: string;
   address?: string;
-  // contractType?: string<'permanent' | 'contract'>;
-  contractType?: ContractType;
-  startDate: Date;
-  finishDate?: Date | boolean;
-  isFullTime?: boolean;
+  contractType?: string;
+  // contractType?: ContractType;
+  startDate?: Date;
+  finishDate?: Date;
+  hoursType?: string;
   hoursPerWeek: number;
 }
 
-export enum ContractType {
-  permanent = "permanent",
-  contract = "contract",
-}
+export type ContractType = "permanent" | "contract";
+// export enum ContractType {
+//   permanent = "permanent",
+//   contract = "contract",
+// }
 
 export interface ChildrenProps {
   children: ReactNode;

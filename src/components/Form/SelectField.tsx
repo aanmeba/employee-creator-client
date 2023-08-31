@@ -28,6 +28,7 @@ const SelectField = ({
       className="border"
       onChange={onChange}
       id={name}
+      name={name}
       value={value}
     >
       {months.length > 1 &&
