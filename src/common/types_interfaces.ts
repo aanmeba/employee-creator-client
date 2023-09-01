@@ -15,6 +15,10 @@ export interface Inputs {
   hoursPerWeek: number;
 }
 
+export interface ReceivedInputs extends Inputs {
+  id: number;
+}
+
 export type ContractType = "permanent" | "contract";
 // export enum ContractType {
 //   permanent = "permanent",
