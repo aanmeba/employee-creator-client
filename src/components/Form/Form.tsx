@@ -12,6 +12,8 @@ import { schema } from "./schema";
 import FieldErrorMessage from "./FieldErrorMessage/FieldErrorMessage";
 import Button from "../Button/Button";
 import { styleInputField } from "../../common/styleClassName";
+import { createNewEmployee } from "../../services/fetchServices";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const {
@@ -21,6 +23,7 @@ const Form = () => {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver<Inputs>(schema) });
 
+  const navigation = useNavigate();
   // const defaultValues = {
   //   firstName: "",
   //   middleName: "",
@@ -38,6 +41,10 @@ const Form = () => {
   const onSubmit = (data: Inputs) => {
     console.log("--- form submitted -----");
     console.log(data, " --- onSubmit data");
+    createNewEmployee(data)
+      .then((data) => console.log(data, " *** Data received"))
+      .catch((err) => console.log(err, " *** error"))
+      .finally(() => navigation("/"));
   };
 
   // const onError = (errors: FieldErrors<Inputs>) =>
