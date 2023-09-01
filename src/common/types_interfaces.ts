@@ -9,11 +9,14 @@ export interface Inputs {
   mobile: string;
   address?: string;
   contractType?: string;
-  // contractType?: ContractType;
   startDate?: Date;
   finishDate?: Date;
   hoursType?: string;
   hoursPerWeek: number;
+}
+
+export interface ReceivedInputs extends Inputs {
+  id: number;
 }
 
 export type ContractType = "permanent" | "contract";
