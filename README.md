@@ -1,13 +1,26 @@
-# Employee Creator
+# Employee Creator - Frontend
 
-## Routing
+- [Go to Employee Creater - Backend repo](https://github.com/aanmeba/employee-creator-server)
 
-- `/` - GET All the employees
-  - [Add employee] button -> `/add`
-  - [Edit] button -> PATCH `/employees/{id}`
-  - [Remove] button -> DELETE `/employees/{id}`
-- `/add` - Form - POST a new employee
-- `/employees/{id}` - Form - GET & PATCH an existing employee
+## Requirements
+
+- CRUD funcionalities
+- Use React TypeScript for the frontend & Spring RESTful API
+
+## Features
+
+- CRUD employee
+- Navigate back and forward the list of employee and Edit or Add page
+
+## Technology
+
+- TypeScript with React
+  - React router
+  - React hook form with yup
+  - Redux (will be implemented)
+- Tailwind CSS
+- Axios (will be implemented)
+- Vitest with Jest and Testing Library
 
 ## List of todos
 
