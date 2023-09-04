@@ -1,6 +1,6 @@
 # Employee Creator - Frontend
 
-- [Go to Employee Creater - Backend repo](https://github.com/aanmeba/employee-creator-server)
+- [Go to Employee Creater - Backend repo](https://github.com/aanmeba/employee-creator-api)
 
 ## Requirements
 
