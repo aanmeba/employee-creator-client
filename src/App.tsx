@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Add from "./pages/Add";
+import FormPage from "./pages/FormPage";
 import Home from "./pages/Home";
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/add" element={<Add />} />
+          <Route path="/add" element={<FormPage />} />
+          <Route path="/edit/:id" element={<FormPage />} />
         </Routes>
       </BrowserRouter>
     </main>

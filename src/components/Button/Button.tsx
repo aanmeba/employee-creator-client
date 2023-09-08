@@ -5,7 +5,6 @@ interface ButtonProps extends ChildrenProps {
 }
 
 const Button = ({ children, defaultBtn }: ButtonProps) => {
-  console.log(defaultBtn);
   return (
     <button
       className={`w-32 py-2 border-2 rounded-md ${

@@ -9,6 +9,12 @@ export const getAllEmployees = async () => {
   return data;
 };
 
+export const getEmployeeById = async (id: number) => {
+  const response = await fetch(`${BASE_URL}/${PARAM}/${id}`);
+  const data = await response.json();
+  return data;
+};
+
 export const createNewEmployee = async (employeeData: Inputs) => {
   const response = await fetch(`${BASE_URL}/${PARAM}`, {
     method: "POST",

@@ -29,12 +29,19 @@ export interface ChildrenProps {
   children: ReactNode;
 }
 
-export type InputFieldType = {
+export interface InputFieldType {
   register: UseFormRegister<FieldValues & Inputs>;
   name: string;
   required?: boolean;
   type?: string;
-  value?: string;
   onChange?: ChangeEventHandler;
-  pattern?: RegExp;
-};
+  // pattern?: RegExp;
+}
+
+export interface TextInputFieldType extends InputFieldType {
+  value?: string;
+  storedValue?: string;
+}
+export interface NumberInputFieldType extends InputFieldType {
+  value?: number;
+}

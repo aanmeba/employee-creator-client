@@ -1,5 +1,8 @@
 import { styleInputField, styleRadioBtn } from "../../common/styleClassName";
-import { InputFieldType } from "../../common/types_interfaces";
+import {
+  NumberInputFieldType,
+  TextInputFieldType,
+} from "../../common/types_interfaces";
 
 const InputField = ({
   register,
@@ -8,15 +11,16 @@ const InputField = ({
   type = "text",
   value,
   onChange,
-  pattern,
-}: InputFieldType) => {
+  // pattern,
+  storedValue,
+}: TextInputFieldType & NumberInputFieldType) => {
   const fieldStyle = type === "radio" ? styleRadioBtn : styleInputField;
 
-  const inputField = (value?: string) =>
+  const inputField = (value?: string | number) =>
     value ? (
       <input
         type={type}
-        {...register(name, { required: required, pattern: pattern })}
+        {...register(name, { required: required })}
         className={fieldStyle}
         name={name}
         id={name}
@@ -28,7 +32,6 @@ const InputField = ({
         type={type}
         {...register(name, {
           required: required,
-          pattern: pattern,
         })}
         className={fieldStyle}
         name={name}
@@ -36,13 +39,28 @@ const InputField = ({
       />
     );
 
+  const radioField = (value?: string, storedValue?: string) => (
+    <input
+      type={type}
+      {...register(name, { required: required })}
+      className={fieldStyle}
+      name={name}
+      id={name}
+      value={value}
+      onChange={onChange}
+      checked={storedValue?.toLowerCase() === value?.toLowerCase()}
+    />
+  );
+
   return (
     <>
-      {value ? (
+      {type === "radio" ? (
         <label className="flex gap-4 items-center py-2">
-          {inputField(value)}
+          {radioField(value, storedValue)}
           {value}
         </label>
+      ) : value ? (
+        inputField(value)
       ) : (
         inputField()
       )}
