@@ -4,37 +4,56 @@ const BASE_URL = `http://localhost:8080`;
 const PARAM = `employees`;
 
 export const getAllEmployees = async () => {
-  const response = await fetch(`${BASE_URL}/${PARAM}`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/${PARAM}`);
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("🚨 ERROR while fetching all employees: ", err);
+    throw err;
+  }
 };
 
 export const getEmployeeById = async (id: number) => {
-  const response = await fetch(`${BASE_URL}/${PARAM}/${id}`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/${PARAM}/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("🚨 ERROR while fetching an employee: ", err);
+    throw err;
+  }
 };
 
 export const createNewEmployee = async (employeeData: Inputs) => {
-  const response = await fetch(`${BASE_URL}/${PARAM}`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(employeeData),
-  });
-  const data = await response.json();
-  console.log(data, " --- data ---- ");
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/${PARAM}`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(employeeData),
+    });
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    console.error("🚨 ERROR while adding an employee: ", err);
+    throw err;
+  }
 };
 
 export const removeEmployeeById = async (id?: number) => {
-  console.log(id, "-- remove id");
-  const response = await fetch(`${BASE_URL}/${PARAM}/${id}`, {
-    method: "DELETE",
-  });
-  console.log(response.status, " --- status");
-  return response.status;
+  try {
+    const response = await fetch(`${BASE_URL}/${PARAM}/${id}`, {
+      method: "DELETE",
+    });
+
+    return response.status;
+  } catch (err) {
+    console.error("🚨 ERROR while removing an employee: ", err);
+    throw err;
+  }
 };
 
 export const updateEmployeeById = async (id: number, updatedData: Inputs) => {
@@ -48,6 +67,7 @@ export const updateEmployeeById = async (id: number, updatedData: Inputs) => {
     });
     return response.ok;
   } catch (err) {
-    console.log("*%*%*%*%*%*%*%*% ERROR ", err);
+    console.error("🚨 ERROR while updating an employee: ", err);
+    throw err;
   }
 };
