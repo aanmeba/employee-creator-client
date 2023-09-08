@@ -1,5 +1,5 @@
 import { ReceivedInputs } from "../../common/types_interfaces";
-import { calcualteYearsOfEmployment } from "../../helpers/helpers";
+import { calculateYearsOfEmployment } from "../../helpers/helpers";
 import CardLink from "./CardLink";
 
 const Card = ({ employee }: { employee: ReceivedInputs }) => {
@@ -15,7 +15,7 @@ const Card = ({ employee }: { employee: ReceivedInputs }) => {
         <span>
           {contractType}{" "}
           {startDate
-            ? " - " + calcualteYearsOfEmployment(startDate) + " yrs"
+            ? " - " + calculateYearsOfEmployment(startDate) + " yrs"
             : ""}
         </span>
         <span>{email}</span>

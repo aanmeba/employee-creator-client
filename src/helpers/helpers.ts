@@ -1,6 +1,5 @@
-export const calcualteYearsOfEmployment = (date: Date) => {
-  const newDate = new Date(date);
-  const diff = +Date.now() - +newDate;
+export const calculateYearsOfEmployment = (date: Date) => {
+  const diff = +Date.now() - +date;
   const gap = new Date(diff);
 
   return Math.abs(gap.getUTCFullYear() - 1970);
