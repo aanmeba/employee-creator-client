@@ -25,6 +25,6 @@
     "strictNullChecks": true,
     "strictFunctionTypes": false
   },
-  "include": ["src", "config", ".archive/SelectField.tsx"],
+  "include": ["src", "config"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
