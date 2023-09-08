@@ -1,4 +1,8 @@
-import { calculateYearsOfEmployment } from "./helpers";
+import {
+  calculateYearsOfEmployment,
+  singularOrPlural,
+  toCapitalise,
+} from "./helpers";
 
 // class MockDate extends Date {
 //   constructor(arg: string) {
@@ -29,4 +33,30 @@ describe("calculateYearsOfEmployment()", () => {
   // });
 
   // test("if input value is future, return null");
+});
+
+describe("singularOrPlural()", () => {
+  test("if input is greater than 1, return s", () => {
+    const result = singularOrPlural(2);
+    expect(result).toBe("s");
+  });
+  test("if input is equal to 1 or less than 1, return empty string", () => {
+    const result = singularOrPlural(1);
+    expect(result).toBe("");
+
+    const zero = singularOrPlural(0);
+    expect(zero).toBe("");
+  });
+});
+
+describe("toCapitalise()", () => {
+  test("returns capitalised string", () => {
+    const result = toCapitalise("hello world");
+    expect(result).toBe("Hello world");
+  });
+
+  test("returns empty string if the input is empty string", () => {
+    const result = toCapitalise("");
+    expect(result).toBe("");
+  });
 });
