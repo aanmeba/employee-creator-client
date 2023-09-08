@@ -28,4 +28,4 @@
 - [ ] install Redux and use it
 - [ ] use axios
 - [ ] align layouts of the page
-- [ ] create a helper function to calculate years of employment
+- [v] create a helper function to calculate years of employment
