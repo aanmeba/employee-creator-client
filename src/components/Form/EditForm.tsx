@@ -1,54 +1,63 @@
 import { useForm } from "react-hook-form";
 import InputField from "./InputField";
-import { Inputs } from "../../common/types_interfaces";
+import {
+  EditInputs,
+  Inputs,
+  ReceivedInputs,
+} from "../../common/types_interfaces";
 import InputSection from "./InputSection/InputSection";
 import Label from "./Label/Label";
 import Heading from "../Heading/Heading";
 import FormSection from "./FormSection/FormSection";
-// import DateField from "../Date/DateField";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import FieldErrorMessage from "./FieldErrorMessage/FieldErrorMessage";
 import Button from "../Button/Button";
 import { styleInputField } from "../../common/styleClassName";
-import { createNewEmployee } from "../../services/fetchServices";
-import { useNavigate } from "react-router-dom";
+import {
+  getEmployeeById,
+  updateEmployeeById,
+} from "../../services/fetchServices";
+import { useLocation, useNavigate } from "react-router-dom";
+import NumberField from "./NumberField";
 
-const Form = () => {
+const EditForm = () => {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver<Inputs>(schema) });
 
-  const navigation = useNavigate();
-  // const defaultValues = {
-  //   firstName: "",
-  //   middleName: "",
-  //   lastName: "",
-  //   email: "",
-  //   mobile: "",
-  //   address: "",
-  //   contractType: "",
-  //   hoursType: "",
-  //   hoursPerWeek: 0,
-  // };
-  // const [formValues, setFormValues] = useState<Inputs>(defaultValues);
+  const { pathname } = useLocation();
+  const employeeId = +pathname.split("/edit/")[1];
 
-  // : SubmitHandler<Inputs>
-  const onSubmit = (data: Inputs) => {
-    console.log("--- form submitted -----");
-    console.log(data, " --- onSubmit data");
-    createNewEmployee(data)
+  const [details, setDetails] = useState<EditInputs>();
+
+  const getData = async (id: number) => await getEmployeeById(id);
+
+  useEffect(() => {
+    try {
+      getData(employeeId).then((data) => {
+        setDetails(data);
+        setSelectOptions({
+          contractType: data?.contractType,
+          hoursType: data?.hoursType,
+        });
+      });
+    } catch (err) {
+      console.log("ERROR *** ", err);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+  const onSubmit = (data: ReceivedInputs) => {
+    updateEmployeeById(employeeId, data)
       .then((data) => console.log(data, " *** Data received"))
       .catch((err) => console.log(err, " *** error"))
-      .finally(() => navigation("/"));
+      .finally(() => navigate("/"));
   };
-
-  // const onError = (errors: FieldErrors<Inputs>) =>
-  //   console.log("something went wrong", errors);
 
   const options = {
     contractType: ["Permanent", "Contract"],
@@ -57,8 +66,6 @@ const Form = () => {
 
   const defaultState = {
     contractType: "",
-    // startDateMonth: "",
-    // finishDateMonth: "",
     hoursType: "",
   };
   const [selectOptions, setSelectOptions] = useState(defaultState);
@@ -66,7 +73,9 @@ const Form = () => {
   const handleChange = (
     event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    const { name, value } = event.target;
+    const { id, name, value } = event.target;
+    console.log(id, " // ", name, " // ", value);
+    setDetails((prev) => ({ ...prev, [name]: value }));
     setSelectOptions((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -76,18 +85,36 @@ const Form = () => {
         <Heading>Personal information</Heading>
         <InputSection>
           <Label>First name</Label>
-          <InputField register={register} name="firstName" required={true} />
+          <InputField
+            register={register}
+            name="firstName"
+            required={true}
+            value={details?.firstName}
+            onChange={handleChange}
+          />
           {errors.firstName && (
             <FieldErrorMessage message={errors.firstName.message} />
           )}
         </InputSection>
         <InputSection>
           <Label>Middle name (if applicable)</Label>
-          <InputField register={register} name="middleName" required={false} />
+          <InputField
+            register={register}
+            name="middleName"
+            required={false}
+            value={details?.middleName}
+            onChange={handleChange}
+          />
         </InputSection>
         <InputSection>
           <Label>Last name</Label>
-          <InputField register={register} name="lastName" required={true} />
+          <InputField
+            register={register}
+            name="lastName"
+            required={true}
+            value={details?.lastName}
+            onChange={handleChange}
+          />
           {errors.lastName && (
             <FieldErrorMessage message={errors.lastName.message} />
           )}
@@ -98,13 +125,18 @@ const Form = () => {
         <Heading>Contact details</Heading>
         <InputSection>
           <Label>Email address</Label>
-          <InputField register={register} name="email" required={true} />
+          <InputField
+            register={register}
+            name="email"
+            required={true}
+            value={details?.email}
+            onChange={handleChange}
+          />
 
           {errors.email && <FieldErrorMessage message={errors.email.message} />}
         </InputSection>
         <InputSection>
           <Label>Mobile number</Label>
-          {/* <InputField register={register} name="mobile" required={false} /> */}
           <input
             type="text"
             {...register("mobile", {
@@ -114,6 +146,8 @@ const Form = () => {
             className={styleInputField}
             name="mobile"
             id="mobile"
+            value={details?.mobile}
+            onChange={handleChange}
           />
           {errors.mobile && (
             <FieldErrorMessage message={errors.mobile.message} />
@@ -121,7 +155,13 @@ const Form = () => {
         </InputSection>
         <InputSection>
           <Label>Residential address</Label>
-          <InputField register={register} name="address" required={true} />
+          <InputField
+            register={register}
+            name="address"
+            required={true}
+            value={details?.address}
+            onChange={handleChange}
+          />
         </InputSection>
       </FormSection>
 
@@ -138,29 +178,31 @@ const Form = () => {
               required={true}
               key={i}
               onChange={handleChange}
+              storedValue={selectOptions?.contractType}
             />
           ))}
         </InputSection>
-        <InputField register={register} name="startDate" type="date" />
-        {/* <DateField
+        <InputField
           register={register}
           name="startDate"
-          value={selectOptions.startDateMonth}
+          type="date"
+          value={details?.startDate?.toString()}
           onChange={handleChange}
-        /> */}
+        />
+
         {errors.startDate && (
           <FieldErrorMessage message={errors.startDate.message} />
         )}
-        <InputField register={register} name="finishDate" type="date" />
+        <InputField
+          register={register}
+          name="finishDate"
+          type="date"
+          value={details?.finishDate?.toString()}
+          onChange={handleChange}
+        />
         {errors.finishDate && (
           <FieldErrorMessage message={errors.finishDate.message} />
         )}
-        {/* <DateField
-          register={register}
-          name="finishDate"
-          value={selectOptions.finishDateMonth}
-          onChange={handleChange}
-        /> */}
         <InputSection>
           <Label>Is this on a full-time or part-time basis?</Label>
           {options.hoursType.map((opt, i) => (
@@ -172,12 +214,19 @@ const Form = () => {
               required={true}
               key={i}
               onChange={handleChange}
+              storedValue={selectOptions?.hoursType}
             />
           ))}
         </InputSection>
         <InputSection>
           <Label>Hours per week</Label>
-          <InputField register={register} name="hoursPerWeek" type="number" />
+          <NumberField
+            register={register}
+            name="hoursPerWeek"
+            type="number"
+            value={details?.hoursPerWeek}
+            onChange={handleChange}
+          />
           {errors.hoursPerWeek && (
             <FieldErrorMessage message={errors.hoursPerWeek.message} />
           )}
@@ -192,4 +241,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default EditForm;

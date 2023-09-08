@@ -15,7 +15,7 @@ const CardLink = ({ id }: Partial<ReceivedInputs>) => {
 
   return (
     <div className="flex items-start gap-2">
-      <NavLink to="/edit" state={id} className={styleLinkText}>
+      <NavLink to={`/edit/${id}`} state={id} className={styleLinkText}>
         Edit
       </NavLink>
       |

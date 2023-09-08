@@ -19,22 +19,29 @@ export interface ReceivedInputs extends Inputs {
   id: number;
 }
 
+export type EditInputs = {
+  [K in keyof Inputs]?: Inputs[K];
+};
+
 export type ContractType = "permanent" | "contract";
-// export enum ContractType {
-//   permanent = "permanent",
-//   contract = "contract",
-// }
 
 export interface ChildrenProps {
   children: ReactNode;
 }
 
-export type InputFieldType = {
+export interface InputFieldType {
   register: UseFormRegister<FieldValues & Inputs>;
   name: string;
   required?: boolean;
   type?: string;
-  value?: string;
   onChange?: ChangeEventHandler;
-  pattern?: RegExp;
-};
+  // pattern?: RegExp;
+}
+
+export interface TextInputFieldType extends InputFieldType {
+  value?: string;
+  storedValue?: string;
+}
+export interface NumberInputFieldType extends InputFieldType {
+  value?: number;
+}

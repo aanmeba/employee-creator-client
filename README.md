@@ -22,10 +22,10 @@
 - Axios (will be implemented)
 - Vitest with Jest and Testing Library
 
-## List of todos
+## Future improvement
 
-- [ ] filter the list after `DELETE` an item
-- [ ] install Redux and use it
-- [ ] use axios
-- [ ] align layouts of the page
-- [v] create a helper function to calculate years of employment
+- [ ] Implement Redux
+- [ ] Filter the list after `DELETE` an item using Redux or Context
+- [ ] Implement Axios
+- [ ] Align layouts of the page
+- [ ] Catch exceptions and implement error UI block

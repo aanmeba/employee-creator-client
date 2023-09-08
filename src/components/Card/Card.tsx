@@ -1,10 +1,15 @@
 import { ReceivedInputs } from "../../common/types_interfaces";
-import { calculateYearsOfEmployment } from "../../helpers/helpers";
+import {
+  calculateYearsOfEmployment,
+  singularOrPlural,
+  toCapitalise,
+} from "../../helpers/helpers";
 import CardLink from "./CardLink";
 
 const Card = ({ employee }: { employee: ReceivedInputs }) => {
   const { id, firstName, lastName, contractType, startDate, email } = employee;
-  console.log(employee, typeof id, firstName, startDate, " --- CARD");
+
+  const years = startDate ? calculateYearsOfEmployment(startDate) : 0;
 
   return (
     <article className="flex justify-between h-32 w-full p-4">
@@ -13,10 +18,8 @@ const Card = ({ employee }: { employee: ReceivedInputs }) => {
           {firstName} {lastName}
         </span>
         <span>
-          {contractType}{" "}
-          {startDate
-            ? " - " + calculateYearsOfEmployment(startDate) + " yrs"
-            : ""}
+          {contractType && toCapitalise(contractType)}{" "}
+          {years > 0 ? ` - ${years} year${singularOrPlural(years)}` : ""}
         </span>
         <span>{email}</span>
       </div>
