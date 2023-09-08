@@ -19,6 +19,10 @@ export interface ReceivedInputs extends Inputs {
   id: number;
 }
 
+export type EditInputs = {
+  [K in keyof Inputs]?: Inputs[K];
+};
+
 export type ContractType = "permanent" | "contract";
 
 export interface ChildrenProps {

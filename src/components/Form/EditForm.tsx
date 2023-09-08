@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
 import InputField from "./InputField";
-import { Inputs } from "../../common/types_interfaces";
+import {
+  EditInputs,
+  Inputs,
+  ReceivedInputs,
+} from "../../common/types_interfaces";
 import InputSection from "./InputSection/InputSection";
 import Label from "./Label/Label";
 import Heading from "../Heading/Heading";
@@ -11,8 +15,11 @@ import { schema } from "./schema";
 import FieldErrorMessage from "./FieldErrorMessage/FieldErrorMessage";
 import Button from "../Button/Button";
 import { styleInputField } from "../../common/styleClassName";
-import { getEmployeeById } from "../../services/fetchServices";
-import { useLocation } from "react-router-dom";
+import {
+  getEmployeeById,
+  updateEmployeeById,
+} from "../../services/fetchServices";
+import { useLocation, useNavigate } from "react-router-dom";
 import NumberField from "./NumberField";
 
 const EditForm = () => {
@@ -25,12 +32,9 @@ const EditForm = () => {
   const { pathname } = useLocation();
   const employeeId = +pathname.split("/edit/")[1];
 
-  const [details, setDetails] = useState<Inputs>();
+  const [details, setDetails] = useState<EditInputs>();
 
-  const getData = async (id: number) => {
-    return await getEmployeeById(id);
-    // console.log(response, " ***** RESPONSE ");
-  };
+  const getData = async (id: number) => await getEmployeeById(id);
 
   useEffect(() => {
     try {
@@ -45,13 +49,15 @@ const EditForm = () => {
     } catch (err) {
       console.log("ERROR *** ", err);
     }
-  }, [employeeId]);
+  }, []);
 
-  const onSubmit = (data: Inputs) => {
-    console.log(data);
-    // createNewEmployee(data)
-    //   .then((data) => console.log(data, " *** Data received"))
-    //   .catch((err) => console.log(err, " *** error"));
+  const navigate = useNavigate();
+
+  const onSubmit = (data: ReceivedInputs) => {
+    updateEmployeeById(employeeId, data)
+      .then((data) => console.log(data, " *** Data received"))
+      .catch((err) => console.log(err, " *** error"))
+      .finally(() => navigate("/"));
   };
 
   const options = {
@@ -68,7 +74,9 @@ const EditForm = () => {
   const handleChange = (
     event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    const { name, value } = event.target;
+    const { id, name, value } = event.target;
+    console.log(id, " // ", name, " // ", value);
+    setDetails((prev) => ({ ...prev, [name]: value }));
     setSelectOptions((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -83,6 +91,7 @@ const EditForm = () => {
             name="firstName"
             required={true}
             value={details?.firstName}
+            onChange={handleChange}
           />
           {errors.firstName && (
             <FieldErrorMessage message={errors.firstName.message} />
@@ -95,6 +104,7 @@ const EditForm = () => {
             name="middleName"
             required={false}
             value={details?.middleName}
+            onChange={handleChange}
           />
         </InputSection>
         <InputSection>
@@ -104,6 +114,7 @@ const EditForm = () => {
             name="lastName"
             required={true}
             value={details?.lastName}
+            onChange={handleChange}
           />
           {errors.lastName && (
             <FieldErrorMessage message={errors.lastName.message} />
@@ -120,6 +131,7 @@ const EditForm = () => {
             name="email"
             required={true}
             value={details?.email}
+            onChange={handleChange}
           />
 
           {errors.email && <FieldErrorMessage message={errors.email.message} />}
@@ -136,6 +148,7 @@ const EditForm = () => {
             name="mobile"
             id="mobile"
             value={details?.mobile}
+            onChange={handleChange}
           />
           {errors.mobile && (
             <FieldErrorMessage message={errors.mobile.message} />
@@ -148,6 +161,7 @@ const EditForm = () => {
             name="address"
             required={true}
             value={details?.address}
+            onChange={handleChange}
           />
         </InputSection>
       </FormSection>
@@ -165,7 +179,7 @@ const EditForm = () => {
               required={true}
               key={i}
               onChange={handleChange}
-              storedValue={details?.contractType}
+              storedValue={selectOptions?.contractType}
             />
           ))}
         </InputSection>
@@ -174,6 +188,7 @@ const EditForm = () => {
           name="startDate"
           type="date"
           value={details?.startDate?.toString()}
+          onChange={handleChange}
         />
 
         {errors.startDate && (
@@ -184,6 +199,7 @@ const EditForm = () => {
           name="finishDate"
           type="date"
           value={details?.finishDate?.toString()}
+          onChange={handleChange}
         />
         {errors.finishDate && (
           <FieldErrorMessage message={errors.finishDate.message} />
@@ -210,6 +226,7 @@ const EditForm = () => {
             name="hoursPerWeek"
             type="number"
             value={details?.hoursPerWeek}
+            onChange={handleChange}
           />
           {errors.hoursPerWeek && (
             <FieldErrorMessage message={errors.hoursPerWeek.message} />

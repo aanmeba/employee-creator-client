@@ -37,12 +37,17 @@ export const removeEmployeeById = async (id?: number) => {
   return response.status;
 };
 
-// export const updateEmployeeById = async (id: number, data: Inputs) => {
-//   const response = await fetch(`${BASE_URL}/${PARAM}/${id}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   });
-// };
+export const updateEmployeeById = async (id: number, updatedData: Inputs) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${PARAM}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+    return response.ok;
+  } catch (err) {
+    console.log("*%*%*%*%*%*%*%*% ERROR ", err);
+  }
+};
