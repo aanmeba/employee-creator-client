@@ -9,10 +9,9 @@ const Home = () => {
   const [employees, setEmployees] = useState<ReceivedInputs[]>();
 
   useEffect(() => {
-    getAllEmployees().then((data) => {
-      console.log(data);
-      setEmployees(data);
-    });
+    getAllEmployees()
+      .then(setEmployees)
+      .catch((err) => console.log(err));
   }, []);
 
   return (

@@ -8,7 +8,6 @@ import CardLink from "./CardLink";
 
 const Card = ({ employee }: { employee: ReceivedInputs }) => {
   const { id, firstName, lastName, contractType, startDate, email } = employee;
-  console.log(employee, typeof id, firstName, startDate, " --- CARD");
 
   const years = startDate ? calculateYearsOfEmployment(startDate) : 0;
 

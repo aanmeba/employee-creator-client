@@ -39,7 +39,6 @@ const EditForm = () => {
   useEffect(() => {
     try {
       getData(employeeId).then((data) => {
-        console.log(data, " **** data");
         setDetails(data);
         setSelectOptions({
           contractType: data?.contractType,

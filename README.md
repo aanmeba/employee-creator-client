@@ -24,7 +24,8 @@
 
 ## Future improvement
 
-- [ ] filter the list after `DELETE` an item
-- [ ] install Redux and use it
-- [ ] use axios
-- [ ] align layouts of the page
+- [ ] Implement Redux
+- [ ] Filter the list after `DELETE` an item using Redux or Context
+- [ ] Implement Axios
+- [ ] Align layouts of the page
+- [ ] Catch exceptions and implement error UI block
