@@ -34,6 +34,7 @@ export const removeEmployeeById = async (id?: number) => {
     method: "DELETE",
   });
   console.log(response.status, " --- status");
+  return response.status;
 };
 
 // export const updateEmployeeById = async (id: number, data: Inputs) => {

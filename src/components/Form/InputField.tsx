@@ -1,8 +1,5 @@
 import { styleInputField, styleRadioBtn } from "../../common/styleClassName";
-import {
-  NumberInputFieldType,
-  TextInputFieldType,
-} from "../../common/types_interfaces";
+import { TextInputFieldType } from "../../common/types_interfaces";
 
 const InputField = ({
   register,
@@ -11,12 +8,11 @@ const InputField = ({
   type = "text",
   value,
   onChange,
-  // pattern,
   storedValue,
-}: TextInputFieldType & NumberInputFieldType) => {
+}: TextInputFieldType) => {
   const fieldStyle = type === "radio" ? styleRadioBtn : styleInputField;
 
-  const inputField = (value?: string | number) =>
+  const inputField = (value?: string) =>
     value ? (
       <input
         type={type}

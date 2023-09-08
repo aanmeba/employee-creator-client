@@ -13,6 +13,7 @@ import Button from "../Button/Button";
 import { styleInputField } from "../../common/styleClassName";
 import { getEmployeeById } from "../../services/fetchServices";
 import { useLocation } from "react-router-dom";
+import NumberField from "./NumberField";
 
 const EditForm = () => {
   const {
@@ -47,6 +48,7 @@ const EditForm = () => {
   }, [employeeId]);
 
   const onSubmit = (data: Inputs) => {
+    console.log(data);
     // createNewEmployee(data)
     //   .then((data) => console.log(data, " *** Data received"))
     //   .catch((err) => console.log(err, " *** error"));
@@ -124,7 +126,6 @@ const EditForm = () => {
         </InputSection>
         <InputSection>
           <Label>Mobile number</Label>
-          {/* <InputField register={register} name="mobile" required={false} /> */}
           <input
             type="text"
             {...register("mobile", {
@@ -204,7 +205,7 @@ const EditForm = () => {
         </InputSection>
         <InputSection>
           <Label>Hours per week</Label>
-          <InputField
+          <NumberField
             register={register}
             name="hoursPerWeek"
             type="number"

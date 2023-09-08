@@ -20,10 +20,6 @@ export interface ReceivedInputs extends Inputs {
 }
 
 export type ContractType = "permanent" | "contract";
-// export enum ContractType {
-//   permanent = "permanent",
-//   contract = "contract",
-// }
 
 export interface ChildrenProps {
   children: ReactNode;

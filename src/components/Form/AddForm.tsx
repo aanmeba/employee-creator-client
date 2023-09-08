@@ -14,6 +14,7 @@ import Button from "../Button/Button";
 import { styleInputField } from "../../common/styleClassName";
 import { createNewEmployee } from "../../services/fetchServices";
 import { useNavigate } from "react-router-dom";
+import NumberField from "./NumberField";
 
 const AddForm = () => {
   const {
@@ -41,6 +42,8 @@ const AddForm = () => {
     contractType: "",
     hoursType: "",
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectOptions, setSelectOptions] = useState(defaultState);
 
   const handleChange = (
@@ -122,12 +125,6 @@ const AddForm = () => {
           ))}
         </InputSection>
         <InputField register={register} name="startDate" type="date" />
-        {/* <DateField
-          register={register}
-          name="startDate"
-          value={selectOptions.startDateMonth}
-          onChange={handleChange}
-        /> */}
         {errors.startDate && (
           <FieldErrorMessage message={errors.startDate.message} />
         )}
@@ -135,12 +132,6 @@ const AddForm = () => {
         {errors.finishDate && (
           <FieldErrorMessage message={errors.finishDate.message} />
         )}
-        {/* <DateField
-          register={register}
-          name="finishDate"
-          value={selectOptions.finishDateMonth}
-          onChange={handleChange}
-        /> */}
         <InputSection>
           <Label>Is this on a full-time or part-time basis?</Label>
           {options.hoursType.map((opt, i) => (
@@ -157,7 +148,7 @@ const AddForm = () => {
         </InputSection>
         <InputSection>
           <Label>Hours per week</Label>
-          <InputField register={register} name="hoursPerWeek" type="number" />
+          <NumberField register={register} name="hoursPerWeek" type="number" />
           {errors.hoursPerWeek && (
             <FieldErrorMessage message={errors.hoursPerWeek.message} />
           )}
