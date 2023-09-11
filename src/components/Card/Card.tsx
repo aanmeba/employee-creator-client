@@ -11,12 +11,12 @@ const Card = ({ employee }: { employee: ReceivedInputs }) => {
 
   const years = startDate ? calculateYearsOfEmployment(startDate) : 0;
 
+  const fullName = `${toCapitalise(firstName)} ${toCapitalise(lastName)}`;
+
   return (
     <article className="flex justify-between h-32 w-full p-4">
       <div className="flex flex-col justify-around">
-        <span className="font-bold">
-          {firstName} {lastName}
-        </span>
+        <span className="font-bold">{fullName}</span>
         <span>
           {contractType && toCapitalise(contractType)}{" "}
           {years > 0 ? ` - ${years} year${singularOrPlural(years)}` : ""}
