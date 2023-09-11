@@ -73,8 +73,8 @@ const EditForm = () => {
   const handleChange = (
     event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    const { id, name, value } = event.target;
-    console.log(id, " // ", name, " // ", value);
+    const { name, value } = event.target;
+
     setDetails((prev) => ({ ...prev, [name]: value }));
     setSelectOptions((prev) => ({ ...prev, [name]: value }));
   };
