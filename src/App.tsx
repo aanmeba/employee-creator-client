@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <main className="w-100 h-full m-0 p-0 text-slate-600 flex flex-col items-start">
+    <main className="w-full h-full m-0 p-0 text-slate-600 flex flex-col items-start">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -7,7 +7,6 @@ interface WidthProps extends ChildrenProps {
 
 const InputSection = ({ children, inputSize = "md" }: WidthProps) => {
   const classList = `flex flex-col w-${findWidthValue(inputSize)} relative`;
-
   return <div className={classList}>{children}</div>;
 };
 

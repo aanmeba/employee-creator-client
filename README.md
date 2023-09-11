@@ -22,6 +22,10 @@
 - Axios (will be implemented)
 - Vitest with Jest and Testing Library
 
+## Known issues
+
+- [ ]
+
 ## Future improvement
 
 ### Technology
