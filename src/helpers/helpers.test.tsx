@@ -65,7 +65,7 @@ describe("toCapitalise()", () => {
 describe("findWidthValue()", () => {
   test("returns the intended value depending on the input", () => {
     const widthSm = findWidthValue("sm");
-    expect(widthSm).toBe("1/5");
+    expect(widthSm).toBe("1/4");
     const widthMd = findWidthValue("md");
     expect(widthMd).toBe("1/2");
     const widthLg = findWidthValue("lg");
