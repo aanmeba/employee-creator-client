@@ -2,7 +2,7 @@ export const calculateYearsOfEmployment = (date: Date) => {
   const diff = +Date.now() - +new Date(date);
   const gap = new Date(diff);
 
-  return Math.abs(gap.getUTCFullYear() - 1970);
+  return Math.floor(gap.getUTCFullYear() - 1970);
 };
 
 export const singularOrPlural = (num: number) => (num > 1 ? "s" : "");
@@ -15,7 +15,7 @@ export const toCapitalise = (string: string) => {
 export const findWidthValue = (inputSize: string) => {
   switch (inputSize) {
     case "sm":
-      return "1/5";
+      return "1/4";
     case "md":
       return "1/2";
     case "lg":

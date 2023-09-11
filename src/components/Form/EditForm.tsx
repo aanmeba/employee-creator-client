@@ -73,8 +73,8 @@ const EditForm = () => {
   const handleChange = (
     event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    const { id, name, value } = event.target;
-    console.log(id, " // ", name, " // ", value);
+    const { name, value } = event.target;
+
     setDetails((prev) => ({ ...prev, [name]: value }));
     setSelectOptions((prev) => ({ ...prev, [name]: value }));
   };
@@ -225,7 +225,7 @@ const EditForm = () => {
             />
           ))}
         </InputSection>
-        <InputSection inputSize="sm">
+        <InputSection inputSize="md">
           <Label>Hours per week</Label>
           <NumberField
             register={register}

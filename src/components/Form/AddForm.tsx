@@ -5,7 +5,6 @@ import InputSection from "./InputSection/InputSection";
 import Label from "./Label/Label";
 import Heading from "../Heading/Heading";
 import FormSection from "./FormSection/FormSection";
-// import DateField from "../Date/DateField";
 import { ChangeEvent, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
@@ -25,7 +24,6 @@ const AddForm = () => {
 
   const navigation = useNavigate();
 
-  // : SubmitHandler<Inputs>
   const onSubmit = (data: Inputs) => {
     createNewEmployee(data)
       .then((data) => console.log(data, " *** Data received"))
@@ -152,7 +150,7 @@ const AddForm = () => {
             />
           ))}
         </InputSection>
-        <InputSection inputSize="sm">
+        <InputSection inputSize="md">
           <Label>Hours per week</Label>
           <NumberField register={register} name="hoursPerWeek" type="number" />
           {errors.hoursPerWeek && (

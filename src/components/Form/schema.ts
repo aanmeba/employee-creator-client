@@ -21,7 +21,8 @@ export const schema = yup.object({
   startDate: yup.date().required("please enter your start date"),
   finishDate: yup
     .date()
-    .min(yup.ref("startDate"), "finish date should be after your start date"),
+    .min(yup.ref("startDate"), "finish date should be after your start date")
+    .optional(),
   hoursType: yup.string().optional(),
   hoursPerWeek: yup
     .number()

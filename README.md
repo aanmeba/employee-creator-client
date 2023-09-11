@@ -38,5 +38,6 @@
 - [ ] Catch exceptions and implement error UI block
 - [ ] Filter the list after `DELETE` an item using Redux or Context
 - [v] Align layouts of the page
-- [ ] `Cancel` button in Add and Edit page navigates back to the Home
+- [v] `Cancel` button in Add and Edit page navigates back to the Home
 - [ ] Once the `Remove` button in the Home is clicked, confirm message will show
+- [ ] Add `[ ] On going` for `Finish date` field and connect it to the date input field

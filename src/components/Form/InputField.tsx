@@ -35,18 +35,29 @@ const InputField = ({
       />
     );
 
-  const radioField = (value?: string, storedValue?: string) => (
-    <input
-      type={type}
-      {...register(name, { required: required })}
-      className={fieldStyle}
-      name={name}
-      id={name}
-      value={value}
-      onChange={onChange}
-      checked={storedValue?.toLowerCase() === value?.toLowerCase()}
-    />
-  );
+  const radioField = (value?: string, storedValue?: string) =>
+    storedValue ? (
+      <input
+        type={type}
+        {...register(name, { required: required })}
+        className={fieldStyle}
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChange}
+        checked={storedValue?.toLowerCase() === value?.toLowerCase()}
+      />
+    ) : (
+      <input
+        type={type}
+        {...register(name, { required: required })}
+        className={fieldStyle}
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChange}
+      />
+    );
 
   return (
     <>
