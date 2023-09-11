@@ -102,7 +102,7 @@ const AddForm = () => {
             <FieldErrorMessage message={errors.mobile.message} />
           )}
         </InputSection>
-        <InputSection>
+        <InputSection inputSize="lg">
           <Label>Residential address</Label>
           <InputField register={register} name="address" required={true} />
         </InputSection>
@@ -110,7 +110,7 @@ const AddForm = () => {
 
       <FormSection>
         <Heading>Employee status</Heading>
-        <InputSection>
+        <InputSection inputSize="lg">
           <Label>What is contract type?</Label>
           {options.contractType.map((opt, i) => (
             <InputField
@@ -124,15 +124,21 @@ const AddForm = () => {
             />
           ))}
         </InputSection>
-        <InputField register={register} name="startDate" type="date" />
-        {errors.startDate && (
-          <FieldErrorMessage message={errors.startDate.message} />
-        )}
-        <InputField register={register} name="finishDate" type="date" />
-        {errors.finishDate && (
-          <FieldErrorMessage message={errors.finishDate.message} />
-        )}
         <InputSection>
+          <Label>Start date</Label>
+          <InputField register={register} name="startDate" type="date" />
+          {errors.startDate && (
+            <FieldErrorMessage message={errors.startDate.message} />
+          )}
+        </InputSection>
+        <InputSection>
+          <Label>Finish date</Label>
+          <InputField register={register} name="finishDate" type="date" />
+          {errors.finishDate && (
+            <FieldErrorMessage message={errors.finishDate.message} />
+          )}
+        </InputSection>
+        <InputSection inputSize="lg">
           <Label>Is this on a full-time or part-time basis?</Label>
           {options.hoursType.map((opt, i) => (
             <InputField
@@ -146,7 +152,7 @@ const AddForm = () => {
             />
           ))}
         </InputSection>
-        <InputSection>
+        <InputSection inputSize="sm">
           <Label>Hours per week</Label>
           <NumberField register={register} name="hoursPerWeek" type="number" />
           {errors.hoursPerWeek && (
@@ -156,8 +162,12 @@ const AddForm = () => {
       </FormSection>
 
       <div className="flex gap-4">
-        <Button defaultBtn={false}>Save</Button>
-        <Button defaultBtn={true}>Cancel</Button>
+        <Button type="submit" defaultBtn={false}>
+          Save
+        </Button>
+        <Button type="reset" defaultBtn={true}>
+          Cancel
+        </Button>
       </div>
     </form>
   );

@@ -22,10 +22,21 @@
 - Axios (will be implemented)
 - Vitest with Jest and Testing Library
 
+## Known issues
+
+- [ ]
+
 ## Future improvement
 
+### Technology
+
 - [ ] Implement Redux
-- [ ] Filter the list after `DELETE` an item using Redux or Context
 - [ ] Implement Axios
-- [ ] Align layouts of the page
+
+### User experience
+
 - [ ] Catch exceptions and implement error UI block
+- [ ] Filter the list after `DELETE` an item using Redux or Context
+- [v] Align layouts of the page
+- [ ] `Cancel` button in Add and Edit page navigates back to the Home
+- [ ] Once the `Remove` button in the Home is clicked, confirm message will show

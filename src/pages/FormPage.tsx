@@ -9,7 +9,7 @@ const FormPage = () => {
   return (
     <>
       <Header>Employee details</Header>
-      <div className="p-16">{isAddForm ? <AddForm /> : <EditForm />}</div>
+      <div className="p-16 w-4/6">{isAddForm ? <AddForm /> : <EditForm />}</div>
     </>
   );
 };

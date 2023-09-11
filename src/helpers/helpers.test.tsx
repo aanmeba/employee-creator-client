@@ -1,5 +1,6 @@
 import {
   calculateYearsOfEmployment,
+  findWidthValue,
   singularOrPlural,
   toCapitalise,
 } from "./helpers";
@@ -58,5 +59,16 @@ describe("toCapitalise()", () => {
   test("returns empty string if the input is empty string", () => {
     const result = toCapitalise("");
     expect(result).toBe("");
+  });
+});
+
+describe("findWidthValue()", () => {
+  test("returns the intended value depending on the input", () => {
+    const widthSm = findWidthValue("sm");
+    expect(widthSm).toBe("1/5");
+    const widthMd = findWidthValue("md");
+    expect(widthMd).toBe("1/2");
+    const widthLg = findWidthValue("lg");
+    expect(widthLg).toBe("full");
   });
 });

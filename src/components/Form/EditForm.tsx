@@ -153,7 +153,7 @@ const EditForm = () => {
             <FieldErrorMessage message={errors.mobile.message} />
           )}
         </InputSection>
-        <InputSection>
+        <InputSection inputSize="lg">
           <Label>Residential address</Label>
           <InputField
             register={register}
@@ -167,7 +167,7 @@ const EditForm = () => {
 
       <FormSection>
         <Heading>Employee status</Heading>
-        <InputSection>
+        <InputSection inputSize="lg">
           <Label>What is contract type?</Label>
           {options.contractType.map((opt, i) => (
             <InputField
@@ -182,28 +182,35 @@ const EditForm = () => {
             />
           ))}
         </InputSection>
-        <InputField
-          register={register}
-          name="startDate"
-          type="date"
-          value={details?.startDate?.toString()}
-          onChange={handleChange}
-        />
-
-        {errors.startDate && (
-          <FieldErrorMessage message={errors.startDate.message} />
-        )}
-        <InputField
-          register={register}
-          name="finishDate"
-          type="date"
-          value={details?.finishDate?.toString()}
-          onChange={handleChange}
-        />
-        {errors.finishDate && (
-          <FieldErrorMessage message={errors.finishDate.message} />
-        )}
         <InputSection>
+          <Label>Start date</Label>
+
+          <InputField
+            register={register}
+            name="startDate"
+            type="date"
+            value={details?.startDate?.toString()}
+            onChange={handleChange}
+          />
+
+          {errors.startDate && (
+            <FieldErrorMessage message={errors.startDate.message} />
+          )}
+        </InputSection>
+        <InputSection>
+          <Label>Finish date</Label>
+          <InputField
+            register={register}
+            name="finishDate"
+            type="date"
+            value={details?.finishDate?.toString()}
+            onChange={handleChange}
+          />
+          {errors.finishDate && (
+            <FieldErrorMessage message={errors.finishDate.message} />
+          )}
+        </InputSection>
+        <InputSection inputSize="lg">
           <Label>Is this on a full-time or part-time basis?</Label>
           {options.hoursType.map((opt, i) => (
             <InputField
@@ -218,7 +225,7 @@ const EditForm = () => {
             />
           ))}
         </InputSection>
-        <InputSection>
+        <InputSection inputSize="sm">
           <Label>Hours per week</Label>
           <NumberField
             register={register}
@@ -234,8 +241,12 @@ const EditForm = () => {
       </FormSection>
 
       <div className="flex gap-4">
-        <Button defaultBtn={false}>Save</Button>
-        <Button defaultBtn={true}>Cancel</Button>
+        <Button type="submit" defaultBtn={false}>
+          Save
+        </Button>
+        <Button type="reset" defaultBtn={true}>
+          Cancel
+        </Button>
       </div>
     </form>
   );
