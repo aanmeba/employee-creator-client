@@ -1,3 +1,5 @@
+[![Test CI](https://github.com/aanmeba/employee-creator-client/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/aanmeba/employee-creator-client/actions/workflows/test.yml)
+
 # Employee Creator - Frontend
 
 - [Go to Employee Creater - Backend repo](https://github.com/aanmeba/employee-creator-api)
