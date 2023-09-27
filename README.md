@@ -1,27 +1,43 @@
-# React + TypeScript + Vite
+# Employee Creator - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [Go to Employee Creater - Backend repo](https://github.com/aanmeba/employee-creator-api)
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- CRUD funcionalities
+- Use React TypeScript for the frontend & Spring RESTful API
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- CRUD employee
+- Navigate back and forward the list of employee and Edit or Add page
 
-- Configure the top-level `parserOptions` property like this:
+## Technology
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- TypeScript with React
+  - React router
+  - React hook form with yup
+  - Redux (will be implemented)
+- Tailwind CSS
+- Axios (will be implemented)
+- Vitest with Jest and Testing Library
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Known issues
+
+- [ ]
+
+## Future improvement
+
+### Technology
+
+- [ ] Implement Redux
+- [ ] Implement Axios
+
+### User experience
+
+- [ ] Catch exceptions and implement error UI block
+- [ ] Filter the list after `DELETE` an item using Redux or Context
+- [v] Align layouts of the page
+- [v] `Cancel` button in Add and Edit page navigates back to the Home
+- [ ] Once the `Remove` button in the Home is clicked, confirm message will show
+- [ ] Add `[ ] On going` for `Finish date` field and connect it to the date input field
